@@ -1,0 +1,95 @@
+html, body, #root, #root>div {
+    height: 100%
+}
+  
+#mybody {
+    height: 100%;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+#top {
+    height: 15%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+}
+#mid {
+    height: 70%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+#bot {
+    height: 15%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+}
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 5px 0 5px 0;
+    color: #2874A6;
+    font-weight: 800;
+    font-size: 30px;
+    padding: 0 10px 0 10px;
+}
+.bg-w {
+    background-color: #FFF;
+}
+.bg-r {
+    background-color: #EF9A9A;
+}
+.bg-r-ft {
+    color: #FFF;
+}
+.bg-w-ft {
+    color: #EF9A9A;
+}
+img {
+    min-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+h3 {
+    display: inline-block;
+    margin: 0 50px 0 50px;
+    font-size: 30px;
+    vertical-align: 10px;
+}
+button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background-size: 102%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.button-prev {
+    background-image: url("./../img/moins.png");
+}
+.button-next {
+    background-image: url("./../img/plus.png");
+}
+button:hover {
+    transform: scale(0.95);
+    border: 2px solid #7CB342;
+}
+button:focus {
+    transform: scale(1.05);
+}
+.button-replace {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+}
+
+
