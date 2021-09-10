@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./css/style.css"
 
@@ -13,98 +13,43 @@ import img8 from './img/8.png';
 import img9 from './img/9.png';
 import img10 from './img/10.png';
 
-
-
 export function Home() {
 
     const [h1, setH1] = useState(<h1>Combien d'oreillers dans votre vie ?</h1>);
-    const [img, setImg] = useState(img1);
+    const array = ["0", img1, img2, img3, img4, img5, img6, img7, img8, img9, img10]
+    const [img, setImg] = useState(array[1]);
     const [h3, setH3] = useState(1);
     const [prev, setPrev] = useState(<div className='button-replace'></div>);
-    const [next, setNext] = useState(<button onClick={to2} className='button-next'></button>);
+    const [next, setNext] = useState(<button onClick={toNext} className='button-next'></button>);
     const [isBackground, setIsBackground] = useState(true);
 
-    function to1() {
-        setH1(<h1>Combien d'oreillers dans votre vie ?</h1>);
-        setImg(img1);
-        setH3(1);
-        setPrev(<div className='button-replace'></div>);
-        setNext(<button onClick={to2} className='button-next'></button>);
-        setIsBackground(true);
+    function toNext() {
+        setH3(h3 => h3 + 1);
     }
-    function to2() {
-        setH1("");
-        setImg(img2);
-        setH3(2);
-        setPrev(<button onClick={to1} className='button-prev'></button>);
-        setNext(<button onClick={to3} className='button-next'></button>);
-        setIsBackground(false);
+    function toPrev() {
+        setH3(h3 => h3 - 1);
     }
-    function to3() {
-        setH1("");
-        setImg(img3);
-        setH3(3);
-        setPrev(<button onClick={to2} className='button-prev'></button>);
-        setNext(<button onClick={to4} className='button-next'></button>);
-        setIsBackground(true);
-    }
-    function to4() {
-        setH1("");
-        setImg(img4);
-        setH3(4);
-        setPrev(<button onClick={to3} className='button-prev'></button>);
-        setNext(<button onClick={to5} className='button-next'></button>);
-        setIsBackground(false);
-    }
-    function to5() {
-        setH1("");
-        setImg(img5);
-        setH3(5);
-        setPrev(<button onClick={to4} className='button-prev'></button>);
-        setNext(<button onClick={to6} className='button-next'></button>);
-        setIsBackground(true);
-    }
-    function to6() {
-        setH1("");
-        setImg(img6);
-        setH3(6);
-        setPrev(<button onClick={to5} className='button-prev'></button>);
-        setNext(<button onClick={to7} className='button-next'></button>);
-        setIsBackground(false);
-    }
-    function to7() {
-        setH1("");
-        setImg(img7);
-        setH3(7);
-        setPrev(<button onClick={to6} className='button-prev'></button>);
-        setNext(<button onClick={to8} className='button-next'></button>);
-        setIsBackground(true);
-    }
-    function to8() {
-        setH1("");
-        setImg(img8);
-        setH3(8);
-        setPrev(<button onClick={to7} className='button-prev'></button>);
-        setNext(<button onClick={to9} className='button-next'></button>);
-        setIsBackground(false);
-    }
-    function to9() {
-        setH1("");
-        setImg(img9);
-        setH3(9);
-        setPrev(<button onClick={to8} className='button-prev'></button>);
-        setNext(<button onClick={to10} className='button-next'></button>);
-        setIsBackground(true);
-    }
-    function to10() {
-        setH1("");
-        setImg(img10);
-        setH3(10);
-        setPrev(<button onClick={to9} className='button-prev'></button>);
-        setNext(<div className='button-replace'></div>);
-        setIsBackground(false);
-    }
-
+    useEffect(() => {
+        setImg(array[h3])
+        if (h3 % 2 === 0) {
+            setIsBackground(false);
+        }
+        if (h3 % 2 !== 0) {
+            setIsBackground(true);
+        }
+        if (h3 === 1) {
+            setH1(<h1>Combien d'oreillers dans votre vie ?</h1>);
+            setPrev(<div className='button-replace'></div>);
+            setNext(<button onClick={toNext} className='button-next'></button>);
+        }
+        if (h3 > 1) {
+            setH1("");
+            setPrev(<button onClick={toPrev} className='button-prev'></button>);
+        }
+        if (h3 === 10) {
+            setNext(<div className='button-replace'></div>);
+        }
+    }, [h3]);
 
     return (
         <div id="mybody" className={isBackground ? 'bg-w' : 'bg-r'}>
